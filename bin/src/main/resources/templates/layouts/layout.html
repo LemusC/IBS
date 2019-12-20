@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="plantilla">
+
+<head th:include="componentes/assets::assets">
+
+    <title th:include="this::titulo"></title>
+
+</head>
+
+<body>
+
+    <div th:include="componentes/navbar::navbar"></div>
+    <!--<div th:include="componentes/footer::footer"></div>-->
+    <div th:include="componentes/scriptsD::scripts"></div>
+
+    <script>
+        //configuracion de data table
+        $(document).ready(function () {
+            $('#datos').DataTable({
+                //agregando todo a idioma espaniol
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>

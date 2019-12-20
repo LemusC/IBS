@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layout::plantilla">
+
+<head>
+<title th:fragment="titulo">VISTA LISTAR PROVEEDORES</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container" style="position: absolute;">
+			<h1 class="text-center mt-2 mb-2" style="position: absolute;">LISTADO DE PROVEEDORES</h1>
+			<br>
+			<h2 th:if="${items.size()==0}"
+				style="margin-top: 35px; text-align: center;">No hay datos para
+				mostrar</h2>
+
+			<div style="text-align: right">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#agregarProveedor">
+					<i class="fas fa-plus"></i>Agregar Nuevo
+				</button>
+			</div>
+			<hr>
+			<div class="table-wrapper-scroll-y my-custom-scrollbar-bigTable">
+				<table class="table border border-dark" id="datos"
+					th:if="${items.size()>0}"
+					style="color: white; text-align: center; width: 98%; margin-left: 1%">
+					<thead class="bg-gradient-primary">
+						<tr>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>DUI</th>
+							<th>Direccion</th>
+							<th>Telefono</th>
+							<th>Correo</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody style="color: black;">
+						<tr th:each="i:${items}">
+							<td th:text="${i.nombreProveedor}"></td>
+							<td th:text="${i.apellidoProveedor}"></td>
+							<td th:text="${i.duiProveedor}"></td>
+							<td th:text="${i.direccionProveedor}"></td>
+							<td th:text="${i.telefonoProveedor}"></td>
+							<td th:text="${i.correoProveedor}"></td>
+							<td><a name="editar" id="editar" class="btn btn-primary"
+								th:href="@{'/proveedor/modificar/' + ${i.idProveedor}}"
+								role="button"><i class="fas fa-edit"></i> Editar</a></td>
+							<td><a name="eliminar" id="eliminar" class="btn btn-danger"
+								th:href="@{'/proveedor/eliminar/' + ${i.idProveedor}}"
+								role="button"><i class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--MODAL AGREGAR PROVEEDOR-->
+		<div class="modal fade" id="agregarProveedor">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<!--MODAL HEADER-->
+					<div class="modal-header p-3 mb-2 bg-gradient-primary text-white">
+						<h6 class="modal-title">NUEVO PROVEEDOR</h6>
+						<button type="button" class="close text-white"
+							data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+
+					<!--MODAL BODY-->
+					<div class="modal-body ">
+						<form th:action="@{/proveedor/agregar}" method="post"
+							class="text-center">
+							<div class="form-group text-left">
+								<label>Nombre:</label> <input type="text"
+									class="form-control border border-dark" id="proveedor"
+									name="nombreProveedor" autocomplete="off"
+									placeholder="Digite el nombre" required autofocus onkeypress="return /[a-z]/i.test(event.key)">
+							</div>
+							<div class="form-group text-left">
+								<label>Apellido:</label> <input type="text"
+									class="form-control border border-dark" id="proveedor"
+									name="apellidoProveedor" autocomplete="off"
+									placeholder="Digite el apellido" required onkeypress="return /[a-z]/i.test(event.key)">
+							</div>
+							<div class="form-group text-left">
+								<label>Dui:</label> <input type="text"
+									class="form-control border border-dark" id="proveedor"
+									name="duiProveedor" autocomplete="off"
+									placeholder="Digite el dui" required>
+							</div>
+							<div class="form-group text-left">
+								<label>Direccion:</label> <textarea
+						class="form-control border border-dark" rows="3" cols="40"
+						id="proveedor" name="direccionProveedor" autocomplete="off"
+						placeholder="Digite la direccion" required></textarea>
+							</div>
+							<div class="form-group text-left">
+								<label>Telefono:</label> <input type="text"
+									class="form-control border border-dark" id="proveedor"
+									name="telefonoProveedor" autocomplete="off"
+									placeholder="Digite el telefono" required>
+							</div>
+							<div class="form-group text-left">
+								<label>Correo:</label> <input type="text"
+									class="form-control border border-dark" id="proveedor"
+									name="correoProveedor" autocomplete="off"
+									placeholder="Digite el correo">
+							</div>
+							<hr class="border border-dark">
+							<div class="text-center form-group mt-4">
+								 <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                <button class="btn btn-primary" type="reset"><i class="fas fa-broom"></i> Limpiar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

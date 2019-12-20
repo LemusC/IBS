@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">VISTA LISTAR PRODUCTOS</title>
+</head>
+
+<body>
+    <div class="container" th:fragment="content">
+        <h1 class="text-center mt-2 mb-2">LISTADO DE PRODUCTOS</h1>
+        <h2 th:if="${items.size()==0}" style="margin-top: 35px; text-align: center;">No hay datos para mostrar</h2>
+
+        <div style="text-align: right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarProducto"><i class="fas fa-plus"></i>Agregar
+                Nuevo</button>
+        </div>
+        <hr>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table border border-dark" id="datos" th:if="${items.size()>0}"
+                style="color: black; text-align: center; width: 99%; margin-left: 1%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Producto</th>
+                        <th>Presentacion</th>
+                        <th>Precio Compra</th>
+                        <th>Precio Venta</th>
+                        <th>Existencias</th>
+                        <th>Estado</th>
+                        <th>Categoria</th>
+                        <th>Marca</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="i:${items}">
+                        <td th:text="${i.codigoProducto}"></td>
+                        <td th:text="${i.nombreProducto}"></td>
+                        <td th:text="${i.presentacion}"></td>
+                        <td th:text="${i.precioCompra}"></td>
+                        <td th:text="${i.precioVenta}"></td>
+                        <td th:text="${i.existencia}"></td>
+                        <td th:text="${i.estado}"></td>
+                        <td th:text="${i.Categorias.nombreCategoria}"></td>
+                        <td th:text="${i.Marcas.nombreMarca}"></td>
+                        <td>
+                            <a name="editar" id="editar" class="btn btn-primary"
+                                th:href="@{'/producto/modificar/' + ${i.idProducto}}" role="button">Editar</a>
+                        </td>
+                        <td>
+                            <a name="eliminar" id="eliminar" class="btn btn-danger"
+                                th:href="@{'/producto/eliminar/' + ${i.idProducto}}" role="button">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--MODAL AGREGAR USUARIO-->
+        <div class="modal fade" id="agregarProducto">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!--MODAL HEADER-->
+                    <div class="modal-header p-3 mb-2 bg-dark text-white">
+                        <h6 class="modal-title">NUEVO PRODUCTO</h6>
+                        <button type="button" class="close text-white" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    </div>
+
+                    <!--MODAL BODY-->
+                    <div class="modal-body table-wrapper-scroll-y my-custom-scrollbar">
+                        <form th:action="@{/producto/agregar}" method="post" class="text-center">
+                            <div class="form-group text-left col-sm-12">
+                                <label>Codigo:</label>
+                                <input type="text" class="form-control border border-dark" id="producto"
+                                    name="codigoProducto" autocomplete="off" placeholder="Digite el codigo" required
+                                    autofocus>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Producto:</label>
+                                <input type="text" class="form-control border border-dark" id="producto"
+                                    name="nombreProducto" autocomplete="off" placeholder="Digite el producto" required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Presentacion:</label>
+                                <input type="text" class="form-control border border-dark" id="producto"
+                                    name="presentacion" autocomplete="off" placeholder="Digite la presentacion"
+                                    required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Precio Compra:</label>
+                                <input type="text" class="form-control border border-dark" id="producto"
+                                    name="precioCompra" autocomplete="off" placeholder="Digite el precio de compra">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Precio Venta:</label>
+                                <input type="text" class="form-control border border-dark" id="producto"
+                                    name="precioVenta" autocomplete="off" placeholder="Digite el precio de venta">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Existencia:</label>
+                                <input type="number" class="form-control border border-dark" id="producto"
+                                    name="existencia" autocomplete="off" placeholder="Digite las existencias">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Estado:</label>
+                                <div>
+                                    <select name="estado" id="producto" class="form-control border border-dark">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Categoria:</label>
+                                <div>
+                                    <select name="idCategoria" id="producto" class="form-control border border-dark">
+                                        <option th:each="i:${nombreCategorias}" th:value="${i.idCategoria}"
+                                            th:text="${i.nombreCategoria}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Marca:</label>
+                                <div>
+                                    <select name="idMarca" id="producto" class="form-control border border-dark">
+                                        <option th:each="i:${nombreMarcas}" th:value="${i.idMarca}"
+                                            th:text="${i.nombreMarca}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="border border-dark">
+                            <div class="text-center form-group mt-4">
+                                <input type="submit" class="btn btn-success" value="Guardar">
+                                <input class="btn btn-primary" type="reset" value="Limpiar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layout::plantilla">
+
+<head>
+<title th:fragment="titulo"></title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container">
+			<h1 class="text-center mt-2">Nueva Venta</h1>
+			<form>
+				<div class="form-group row" style="margin-left: 20%;">
+					<label for="inputName" class="col-form-label">
+						Tipo:</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="tipoVenta"
+							id="tipoVenta" placeholder="Tipo Venta">
+					</div>
+
+					<div class="form-group row">
+						<label for="inputName" class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-6">
+
+							<input th:if="@{${cliente}==null}" type="text"
+								class="form-control" name="cliente" id="cliente"
+								placeholder="Cliente" readonly="readonly">
+
+						</div>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#ModalClientes">
+							<i class="fas fa-search-plus"></i> Buscar
+						</button>
+
+					</div>
+				</div>
+				<hr>
+				<h3 class="text-center">Detalles de la venta</h3>
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<input type="number" class="form-control" name="cantidad"
+							id="cantidad" placeholder="Cantidad" min="1">
+					</div>
+					<div class="col-sm-2">
+						<input type="number" class="form-control" name="descuento"
+							id="precio" placeholder="Descuento %" min="0.00" max="100">
+					</div>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" name="producto"
+							id="producto" readonly="readonly" placeholder="Producto">
+					</div>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#ModalProducto">
+						<i class="fas fa-search-plus"></i> Buscar
+					</button>
+					<button name="agregarProducto" id="agregarProducto"
+						class="btn btn-success ml-1 " type="button">
+						<i class="fas fa-plus"></i> Agregar
+					</button>
+				</div>
+
+				<table class="table border border-dark"
+					style="color: white; text-align: center;">
+					<thead class="bg-gradient-primary" style="color: white;">
+						<tr>
+							<th>Cant.</th>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Sub-Total</th>
+							<th>Operaciones</th>
+						</tr>
+				
+					</thead>
+					<tbody style="color: black;">
+						<tr>
+							<td>6</td>
+							<td>Cuaderno #3</td>
+							<td>1.13</td>
+							<td>6.78</td>
+							<td><a name="eliminarDetalle" id="eliminarDetalle"
+								class="btn btn-danger" href="#" role="button"><i
+									class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+						
+						<tr>
+							<td>6</td>
+							<td>Tempera</td>
+							<td>2.83</td>
+							<td>16.98</td>
+							<td><a name="eliminarDetalle" id="eliminarDetalle"
+								class="btn btn-danger" href="#" role="button"><i
+									class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+				<div>
+					<label for="inputName" class="col-sm-2 col-form-label">
+						<h5>Total Venta:</h5>
+					</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="totalVenta"
+							id="totalVenta" readonly="readonly">
+					</div>
+				</div>
+				<div class="text-center form-group mt-4">
+					<button type="submit" class="btn btn-success">
+						<i class="fas fa-save"></i> Guardar
+					</button>
+					<a name="cancelar" id="cancelar" class="btn btn-danger"
+						th:href="@{/venta/index}" role="button"><i
+						class="fas fa-window-close"></i> Cancelar</a>
+				</div>
+			</form>
+
+			<!--  Modal Para seleccionar producto-->
+			<!-- The Modal -->
+			<div class="modal fade" id="ModalClientes">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content" style="margin-left: 150px;">
+
+						<!-- Modal Header -->
+						<div class="container">
+							<div class="modal-header">
+								<h4 class="modal-title">Listado de clientes</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<table class="table border border-dark" id="datosCliente"
+									style="color: white; text-align: center;">
+									<thead class="bg-gradient-primary" style="color: white;">
+										<tr>
+											<th>Nombre</th>
+											<th>Apellido</th>
+											<th>Direccion</th>
+											<th>NCR</th>
+											<th>Tipo</th>
+											<th>Giro</th>
+											<th>Telefono</th>
+											<th>Agregar</th>
+										</tr>
+									</thead>
+									<tbody style="color: black;">
+										<tr th:each="i:${Clientes}">
+											<td th:text="${i.nombreCliente}"></td>
+											<td th:text="${i.apellidoCliente}"></td>
+											<td th:text="${i.direccionCliente}"></td>
+											<td th:text="${i.nrc}"></td>
+											<td th:text="${i.tipoCliente}"></td>
+											<td th:text="${i.giro}"></td>
+											<td th:text="${i.telefonoCliente}"></td>
+											<td>
+												<button id="AgregarCliente" class="btn btn-primary">
+													<i class="fas fa-plus"></i> Agregar
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!--  Modal Para seleccionar producto-->
+			<!-- The Modal -->
+			<div class="modal fade" id="ModalProducto">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content" style="margin-left: 150px;">
+
+						<!-- Modal Header -->
+						<div class="container">
+							<div class="modal-header">
+								<h4 class="modal-title">Listado de productos</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<table class="table border border-dark" id="datos"
+									style="color: white; text-align: center;">
+									<thead class="bg-gradient-primary" style="color: white;">
+										<tr>
+											<th>Codigo</th>
+											<th>Producto</th>
+											<th>Presentacion</th>
+											<th>Existencias</th>
+											<th>Categoria</th>
+											<th>Marca</th>
+											<th>Agregar</th>
+										</tr>
+									</thead>
+									<tbody style="color: black;">
+										<tr th:each="i:${nombreProductos}">
+											<td th:text="${i.codigoProducto}"></td>
+											<td th:text="${i.nombreProducto}"></td>
+											<td th:text="${i.presentacion}"></td>
+											<td th:text="${i.existencia}"></td>
+											<td th:text="${i.Categorias.nombreCategoria}"></td>
+											<td th:text="${i.Marcas.nombreMarca}"></td>
+											<td>
+												<button id="AgregarProducto" class="btn btn-primary">
+													<i class="fas fa-plus"></i> Agregar
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

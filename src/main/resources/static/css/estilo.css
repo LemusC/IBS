@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+div.main {
+	background: url("/static/img/fondo.png");
+	height: calc(100vh);
+	width: 100%;
+}
+
+[class*="fontawesome-"]:before {
+	font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+body {
+	overflow: hidden;
+	color: #606468;
+	font: 87.5%/1.5em 'Open Sans', sans-serif;
+	margin: 0;
+}
+
+.container-login {
+	left: 50%;
+	position: fixed;
+	top: 45%;
+	transform: translate(-50%, -50%);
+}
+
+/* ---------- LOGIN ---------- */
+/* ------------- */
+#login form {
+	width: 250px;
+}
+
+#login {
+	padding: 25px 50px;
+	width: 70%;
+}
+/*--------------------*/
+.logo {
+	font-size: 70px;
+	line-height: 250px;
+}
+/*-------------------------------------------------*/
+#login form span.fa {
+	background-color: black;
+	border-radius: 3px 0px 0px 3px;
+	color: #ff0000;
+	display: block;
+	float: left;
+	height: 50px;
+	font-size: 24px;
+	line-height: 50px;
+	text-align: center;
+	width: 50px;
+}
+
+#login form input {
+	height: 50px;
+}
+
+fieldset {
+	padding: 5;
+	border: 0;
+	margin: 0;
+}
+
+#login form input[type="text"] {
+	background-color: #fff;
+	border-radius: 0px 3px 3px 0px;
+	color: #000;
+	margin-bottom: 1em;
+	padding: 0 18px;
+	width: 200px;
+}
+
+#login form input[type="submit"] {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color: #0fa7f0;
+	color: #eee;
+	font-weight: bold;
+	/* margin-bottom: 2em; */
+	text-transform: uppercase;
+	padding: 5px 10px;
+	height: 30px;
+}
+
+#login form input[type="submit"]:hover {
+	background-color: #0080ff;
+}
+
+.middle {
+	display: flex;
+	width: 600px;
+	margin-left: 400px;
+}
+
+.my-custom-scrollbar {
+	position: static;
+	height: 500px;
+	width: 1225px;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}
+
+.my-custom-scrollbar-bigTable {
+	position: static;
+	height: 545px;
+	width: 1340px;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}
+
+.my-custom-scrollbar-modals {
+	position: static;
+	height: 500px;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}
+
+.my-custom-scrollbar-deletes {
+	position: static;
+	height: 627px;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}
+
+.my-custom-scrollbar-movimiento {
+	position: static;
+	height: 545px;
+	overflow-y: auto;
+	overflow-x: hidden; 
+}  
+
+.my-custom-scrollbar-detalle {
+	position: static;
+	height: 400px;
+	overflow-y: visible;
+	overflow-x: hidden; 
+}
+
+.table-wrapper-scroll-y {
+	display: block;
+}
+
+
+
+
+
+

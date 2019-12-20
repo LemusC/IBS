@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Proyecto_IBS">
+		<class>com.ibs.proyecto.model.Bitacora</class>
+		<class>com.ibs.proyecto.model.Categoria</class>
+		<class>com.ibs.proyecto.model.Cliente</class>
+		<class>com.ibs.proyecto.model.Compra</class>
+		<class>com.ibs.proyecto.model.Comprasproducto</class>
+		<class>com.ibs.proyecto.model.Inventario</class>
+		<class>com.ibs.proyecto.model.Inventariosproducto</class>
+		<class>com.ibs.proyecto.model.Marca</class>
+		<class>com.ibs.proyecto.model.Producto</class>
+		<class>com.ibs.proyecto.model.Proveedore</class>
+		<class>com.ibs.proyecto.model.Role</class>
+		<class>com.ibs.proyecto.model.Usuario</class>
+		<class>com.ibs.proyecto.model.Venta</class>
+		<class>com.ibs.proyecto.model.Ventasproducto</class>
+	</persistence-unit>
+</persistence>

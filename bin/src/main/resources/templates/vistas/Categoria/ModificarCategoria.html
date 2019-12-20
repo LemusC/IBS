@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo">Vista Modificar Categoria</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<h1 class="text-center mt-2 mb-2">Modificacion de Categoria</h1>
+		<form th:action="@{/categoria/modificar}" method="post">
+			<div class="form-group row border border-dark">
+				<input th:value="${item.idCategoria}" type="hidden" class="form-control" name="idCategoria"
+					id="idCategoria">
+			</div>	
+			<div class="form-group row form-update">
+				<label for="nombreCategoria" class="col-sm-12 col-form-label">Categoria:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nombreCategoria}" type="text" class="form-control border border-dark" name="nombreCategoria"
+						id="nombreCategoria" placeholder="Digite la categoria" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+					<label for="codigoCategoria" class="col-sm-12 col-form-label">Codigo:</label>
+					<div class="col-sm-12">
+						<input th:value="${item.codigoCategoria}" type="text" class="form-control border border-dark" name="codigoCategoria"
+							id="codigoCategoria" placeholder="Digite el codigo" autocomplete="off" required>
+					</div>
+				</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a name="cancelar" id="cancelar" class="btn btn-danger" href="/categoria/index"
+					role="button">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

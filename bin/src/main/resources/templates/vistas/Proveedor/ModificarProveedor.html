@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo">Vista Modificar Proveedor</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<h1 class="text-center mt-2 mb-2">Modificacion de Proveedor</h1>
+		<form th:action="@{/proveedor/modificar}" method="post">
+			<div class="form-group row border border-dark">
+				<input th:value="${item.idProveedor}" type="hidden" class="form-control" name="idProveedor"
+					id="idProveedor">
+			</div>	
+			<div class="form-group row form-update">
+				<label for="nombreProveedor" class="col-sm-12 col-form-label">Nombre:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nombreProveedor}" type="text" class="form-control border border-dark" name="nombreProveedor"
+						id="nombreProveedor" placeholder="Digite el nombre" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="apellidoProveedor" class="col-sm-12 col-form-label">Apellido:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.apellidoProveedor}" type="text" class="form-control border border-dark" name="apellidoProveedor"
+						id="apellidoProveedor" placeholder="Digite el apellido" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="duiProveedor" class="col-sm-12 col-form-label">Dui:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.duiProveedor}" type="text" class="form-control border border-dark" name="duiProveedor"
+						id="duiProveedor" placeholder="Digite el dui" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="direccionProveedor" class="col-sm-12 col-form-label">Direccion:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.direccionProveedor}" type="text" class="form-control border border-dark" name="direccionProveedor"
+						id="direccionProveedor" placeholder="Digite la direccion" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="telefonoProveedor" class="col-sm-12 col-form-label">Telefono:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.telefonoProveedor}" type="text" class="form-control border border-dark" name="telefonoProveedor"
+						id="telefonoProveedor" placeholder="Digite el telefono" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="correoProveedor" class="col-sm-12 col-form-label">Correo:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.correoProveedor}" type="text" class="form-control border border-dark" name="correoProveedor"
+						id="correoProveedor" placeholder="Digite el correo" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a name="cancelar" id="cancelar" class="btn btn-danger" href="/proveedor/index"
+					role="button">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

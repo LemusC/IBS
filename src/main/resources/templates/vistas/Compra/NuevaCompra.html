@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous">
+    </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-2">Nueva Compra</h1>
+        <form>
+            <div class="form-group row" style="margin-left: 20%;">
+                <label for="inputName" class="col-sm-1 col-form-label">
+                    Fecha:</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" name="fecha" id="fecha">
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-4 col-form-label">
+                        Numero:</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name="fecha" id="text" placeholder="Numero de factura">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row" style="margin-left: 20%;">
+                <label for="inputName" class="col-sm-1 col-form-label">
+                    Tipo:</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="fecha" id="#" placeholder="Tipo de compra">
+                </div>
+                <div class="form-group row">
+                    <label for="inputName" class="col-sm-3 col-form-label">
+                        Proveedor:</label>
+                    <div class="col-sm-6">
+
+                        <input type="text" class="form-control" name="proveedor" id="proveedor" readonly="readonly"
+                            placeholder="Proveedor">
+                    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProveedores"><i
+                            class="fas fa-search-plus"></i> Buscar</button>
+
+                </div>
+            </div>
+            <hr>
+            <h3 class="text-center">Detalles de la compra</h3>
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <input type="number" min="1" class="form-control" name="cantidad" id="cantidad"
+                        placeholder="Cantidad">
+                </div>
+                <div class="col-sm-2">
+                    <input type="number" min="0" class="form-control" name="precio" id="precio" placeholder="Precio">
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="producto" id="producto" readonly="readonly"
+                        placeholder="Producto">
+                </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalProducto"><i
+                        class="fas fa-search-plus"></i> Buscar</button>
+                <button name="agregarDetalle" id="agregarDetalle" class="btn btn-success ml-1 " type="button"><i
+                        class="fas fa-plus"></i> Agregar</button>
+            </div>
+            <div class="">
+                <table class="table border border-dark" style="color: black; text-align: center;">
+                    <thead class="bg-gradient-primary" style="color: black;">
+                        <tr>
+                            <th>Cant.</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Total</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: black;" id="tDetalles">
+
+                    </tbody>
+
+                </table>
+            </div>
+            <div>
+                <label for="totalCompra" class="col-sm-2 col-form-label">
+                    <h5>Total Compra:</h5>
+                </label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="totalVenta" id="totalVenta" readonly="readonly">
+                </div>
+            </div>
+            <div class="text-center form-group mt-4">
+                <button type="button" id="guardarCompra" class="btn btn-success"><i class="fas fa-save"></i>
+                    Guardar</button>
+                <a name="cancelar" id="cancelar" class="btn btn-danger" th:href="@{/compra/index}" role="button"><i
+                        class="fas fa-window-close"></i> Cancelar</a>
+            </div>
+        </form>
+    </div>
+
+
+    <!--  Modal Para seleccionar producto-->
+    <!-- The Modal -->
+    <div class="modal fade" id="ModalProveedores">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" style="margin-left: 150px;">
+
+                <!-- Modal Header -->
+                <div class="container">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Listado de proveedores</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table border border-dark" id="tablaProveedores"
+                            style="color: black; text-align: center;">
+                            <thead class="bg-gradient-primary" style="color: black;">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>DUI</th>
+                                    <th>Direccion</th>
+                                    <th>Telefono</th>
+                                    <th>Correo</th>
+                                    <th>Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datosProveedores">
+                                <tr th:each="item2 : ${proveedor}">
+                                    <td th:text="${item2.idProveedor}"></td>
+                                    <td th:text="${item2.nombreProveedor}"></td>
+                                    <td th:text="${item2.apellidoProveedor}"></td>
+                                    <td th:text="${item2.duiProveedor}"></td>
+                                    <td th:text="${item2.direccionProveedor}"></td>
+                                    <td th:text="${item2.telefonoProveedor}"></td>
+                                    <td th:text="${item2.correoProveedor}"></td>
+                                    <td>
+                                        <button class="btn btn-primary agregarProveedor"
+                                            data-dismiss="modal">Agregar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--  Modal Para seleccionar producto-->
+    <!-- The Modal -->
+    <div class="modal fade" id="ModalProducto">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" style="margin-left: 150px;">
+
+                <!-- Modal Header -->
+                <div class="container">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Listado de productos</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <table class="table border border-dark" id="tablaProductos"
+                            style="color: black; text-align: center;">
+                            <thead class="bg-gradient-primary" style="color: black;">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Codigo</th>
+                                    <th>Producto</th>
+                                    <th>Presentacion</th>
+                                    <th>Precio Venta</th>
+                                    <th>Existencias</th>
+                                    <th>Categoria</th>
+                                    <th>Marca</th>
+                                    <th>Operaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="item : ${productos}">
+                                    <td th:text="${item.idProducto}"></td>
+                                    <td th:text="${item.codigoProducto}"></td>
+                                    <td th:text="${item.nombreProducto}"></td>
+                                    <td th:text="${item.presentacion}"></td>
+                                    <td th:text="${item.precioVenta}"></td>
+                                    <td th:text="${item.existencia}"></td>
+                                    <td th:text="${item.categorias.nombreCategoria}"></td>
+                                    <td th:text="${item.marcas.nombreMarca}"></td>
+                                    <td>
+                                        <button class="btn btn-primary agregarProducto"
+                                            data-dismiss="modal">Agregar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script>
+        let proveedor = {
+            id: 0,
+            nombre: "",
+            telefono: "",
+            direccion: ""
+        };
+        const producto = {
+            id: 0,
+            nombre: ""
+        };
+
+        $(document).ready(function () {
+
+            $(".agregarProveedor").click(function () {
+                agregarProveedor($(this).parent().parent().children('td:eq(0)').text(), $(this).parent()
+                    .parent().children('td:eq(1)').text());
+            });
+            $(".agregarProducto").click(function () {
+                cargarProducto($(this).parent().parent().children('td:eq(0)').text(), $(this).parent()
+                    .parent().children('td:eq(2)').text());
+            });
+
+            $("#agregarDetalle").click(agregarProducto);
+
+
+            $("#guardarCompra").click(guardar);
+
+        });
+
+        function agregarProveedor(id, nombre) {
+            proveedor.id = id;
+            proveedor.nombre = nombre;
+            $("#proveedor").val(proveedor.nombre);
+        }
+
+        function cargarProducto(id, nombre) {
+            producto.id = id;
+            producto.nombre = nombre;
+            $("#producto").val(producto.nombre);
+        }
+
+        function agregarProducto() {
+            $.ajax({
+                url: "/compra/agregarDetalle",
+                method: "Post",
+                data: {
+                    cantidad: $("#cantidad").val(),
+                    idProducto: producto.id
+                },
+                success: function (response) {
+                    alert("Detalle agregado");
+                    $("#cantidad").val(0);
+                    $("#producto").val("");
+                    producto.id = 0;
+                    producto.nombre = "";
+                    cargarDetalles();
+                },
+                error: function (response) {
+                    alert("NO SE AGREGO EL DETALLE");
+                }
+            });
+        }
+
+        function cargarDatos() {
+            $.ajax({
+                method: "Get",
+                url: "/compra/api/proveedores",
+                success: function (data) {
+
+                },
+                error: function (data) {
+                    alert("Error en la peticion");
+                    console.log(data);
+                }
+
+            })
+        }
+
+        function cargarDetalles() {
+            $.ajax({
+                url: "/compra/allDetalles",
+                method: "Get",
+                success: function (response) {
+                    $("#tDetalles").html("");
+                    response.forEach(i => {
+                        $("#tDetalles").append("" +
+                            "<tr>" +
+                            "<td>" + i.cantidad + "</td>" +
+                            "<td>" + i.producto.nombre + "</td>" +
+                            "<td>$" + i.producto.precio + "</td>" +
+                            "<td>$" + (i.producto.precio * i.cantidad) + "</td>" +
+                            "</tr>" +
+                            "");
+                    });
+                },
+                error: function (response) {
+
+                }
+            });
+        }
+
+        function guardar() {
+            $.ajax({
+                url: "/compra/save",
+                method: "Post",
+                data: {
+                    fecha: $("#fecha").val(),
+                    idProveedor: proveedor.id
+                },
+                success: function (response) {
+                    alert("VENTA GUARDADA CORRECTAMENTE...");
+                    location.reload();
+                },
+                error: function (response) {
+                    alert("VENTA NO GUARDADA ...");
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layout::plantilla">
+
+<head>
+<title th:fragment="titulo"></title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container">
+			<h1 class="text-center mt-2 mb-2">MOVIMIENTO EN ALMACEN</h1>
+			<hr class="border border-dark">  
+			<form th:action="@{/EntradasSalidasProductos/guardarMovimiento}"
+				method="post" class="col-sm-10 offset-1 my-custom-scrollbar-movimiento">
+
+				<div class="form-group row" style="text-align: center;">
+					<label for="evento" class="col-sm-2 col-form-label"
+						style="text-align: right;">Evento:</label>
+					<div class="col-sm-4">
+						<select name="evento" id="evento"
+							class="form-control border border-dark text-center">
+							<option value="Entrada">Entrada</option>
+							<option value="Salida">Salida</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group row" style="text-align: center;">
+					<label for="descripcion" class="col-sm-2 col-form-label"
+						style="text-align: right;">Descripcion:</label>
+					<div class="col-sm-9">
+						<textarea class="form-control border border-dark" id="descripcion"
+							rows="3" cols="40" name="descripcion" autocomplete="off" required
+							autofocus placeholder="Describa las causas del movimiento"></textarea>
+					</div>
+				</div>
+				
+				<h3 class="text-center">Detalles del movimiento</h3>
+                <div class="form-group row">
+                         <div class="col-sm-3">
+                            <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad" style="text-align: center;" min="1">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="producto" id="producto"  readonly="readonly" placeholder="Producto" style="text-align: center;">
+                        </div>
+                        <div class="text-center form-group">
+                        <button type="button" class="btn btn-primary"
+							style="text-align: right;" data-toggle="modal"
+							data-target="#ModalProducto"><i class="fas fa-search-plus"></i> Buscar</button>
+							
+							<button type="button" name="agregarProducto" id="agregarProducto" class="btn btn-success"
+							style="text-align: right;"> <i class="fas fa-plus"></i> Agregar</button>
+							</div>
+                 </div>
+
+                 <table class="table border border-dark" style="color: white; text-align: center;">
+									<thead class="bg-gradient-primary" style="color: white;">
+           
+                         <tr>
+                             <th>Cant.</th>
+                             <th>Producto</th>
+                             <th>Operaciones</th>
+                         </tr>
+                         </thead>
+                         <tbody style="color: black; text-align: center;">
+                             <tr>
+                                 <td>3</td>
+                                 <td>Tempera</td>
+                               
+                                 <td>
+                                     <a name="eliminarDetalle" id="eliminarDetalle" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                                 </td>
+                             </tr>
+                            
+                         </tbody>
+                 </table>
+                 
+                 <div class="text-center form-group mt-4">
+					<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+					<a name="cancelar" id="cancelar" class="btn btn-danger" th:href="@{/EntradasSalidasProductos/index}"
+					role="button"><i class="fas fa-window-close"></i> Cancelar</a>
+				</div>
+                </form>
+                
+				<!--<hr class="border border-dark col-12">-->
+				
+			
+		</div>
+
+		<!--  Modal Para seleccionar producto-->  
+		<!-- The Modal -->
+		<div class="modal fade" id="ModalProducto">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content" style="margin-left: 150px;">
+
+					<!-- Modal Header -->
+					<div class="container">
+						<div class="modal-header">
+							<h4 class="modal-title">Listado de productos</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<table class="table border border-dark" id="datos">
+								<thead class="bg-gradient-primary" style="color: white; text-align: center;">
+									<tr>
+										<th>Codigo</th>
+										<th>Producto</th>
+										<th>Presentacion</th>
+										<th>Existencias</th>
+										<th>Categoria</th>
+										<th>Marca</th>
+										<th>Agregar</th>
+									</tr>
+								</thead>
+								<tbody style="color: black;">
+									<tr th:each="i:${nombreProductos}">
+										<td th:text="${i.codigoProducto}"></td>
+										<td th:text="${i.nombreProducto}"></td>
+										<td th:text="${i.presentacion}"></td>
+										<td th:text="${i.existencia}"></td>
+										<td th:text="${i.Categorias.nombreCategoria}"></td>
+										<td th:text="${i.Marcas.nombreMarca}"></td>
+										<td>
+											<button id="AgregarProducto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

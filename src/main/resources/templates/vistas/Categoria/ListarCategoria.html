@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layout::plantilla">
+
+<head>
+<title th:fragment="titulo">VISTA LISTAR CATEGORIAS</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container" style="position: absolute;">
+			<h1 class="text-center mt-2 mb-2" style="position: absolute;">LISTADO DE CATEGORIAS</h1>
+			<br>
+			<br>
+			<br>
+			<h2 th:if="${items.size()==0}" style="text-align: center;">No
+				hay datos para mostrar</h2>
+
+			<div style="text-align: right">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#agregarCategoria">
+					<i class="fas fa-plus"></i>Agregar Nuevo
+				</button>
+			</div>
+			<hr>
+			<div class="my-custom-scrollbar-bigTable table-wrapper-scroll-y">
+				<table class="table border border-dark" id="datos"
+					th:if="${items.size()>0}"
+					style="color: white; text-align: center; width: 98%; margin-left: 1%">
+					<thead class="bg-gradient-primary">
+						<tr>
+							<th>Categoria</th>
+							<th>Codigo</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody style="color: black">
+						<tr th:each="i:${items}">
+							<td th:text="${i.nombreCategoria}"></td>
+							<td th:text="${i.codigoCategoria}"></td>
+							<td><a name="editar" id="editar" class="btn btn-primary"
+								th:href="@{'/categoria/modificar/' + ${i.idCategoria}}"
+								role="button"><i class="fas fa-edit"></i> Editar</a>
+							<td><a name="eliminar" id="eliminar" class="btn btn-danger"
+								th:href="@{'/categoria/eliminar/' + ${i.idCategoria}}"
+								role="button"> <i class="fas fa-trash-alt"></i> Eliminar</a>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!--MODAL AGREGAR PROVEEDOR-->
+		<div class="modal fade" id="agregarCategoria">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<!--MODAL HEADER-->
+					<div class="modal-header p-3 mb-2 bg-gradient-primary text-white">
+						<h6 class="modal-title">NUEVA CATEGORIA</h6>
+						<button type="button" class="close text-white"
+							data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+
+					<!--MODAL BODY-->
+					<div class="modal-body">
+						<form th:action="@{/categoria/agregar}" method="post"
+							class="text-center">
+							<div class="form-group text-left">
+								<label>Categoria:</label> <input type="text"
+									class="form-control border border-dark" id="categoria"
+									name="nombreCategoria" autocomplete="off"
+									placeholder="Digite la categoria" required autofocus onkeypress="return /[a-z]/i.test(event.key)">
+							</div>
+							<div class="form-group text-left">
+								<label>Codigo:</label> <input type="text"
+									class="form-control border border-dark" id="categoria"
+									name="codigoCategoria" autocomplete="off"
+									placeholder="Digite el codigo" required>
+							</div>
+							<hr class="border border-dark">
+							<div class="text-center form-group mt-4">
+								 <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                <button class="btn btn-primary" type="reset"><i class="fas fa-broom"></i> Limpiar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

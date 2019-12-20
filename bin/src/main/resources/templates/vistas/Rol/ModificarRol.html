@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+<head>
+        <title th:fragment="titulo">Vista Modificar Rol</title>
+</head>
+<body>
+    <div class="container" th:fragment="content">
+            <h1 class="text-center mt-2 mb-2">Modificacion de Rol</h1>
+            <form th:action="@{/rol/modificar}" method="post">
+                <div class="form-group row border border-dark">
+                        <input th:value="${item.idRol}" type="hidden" class="form-control" name="idRol" id="idRol" >
+                </div>
+                <div class="form-group row form-update">
+                        <label for="nombreRol" class="col-sm-12 col-form-label">Rol:</label>
+                        <div class="col-sm-12">
+                            <input th:value="${item.nombreRol}" type="text" class="form-control border border-dark" name="nombreRol" id="nombreRol" placeholder="Digite el rol" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                            <a name="cancelar" id="cancelar" class="btn btn-danger" href="/rol/index" role="button">Cancelar</a>
+                    </div>
+          </form>
+    </div>     
+</body>
+</html>

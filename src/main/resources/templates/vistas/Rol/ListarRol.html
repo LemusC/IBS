@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">VISTA LISTAR ROLES</title>
+</head>
+
+<body>
+
+    <div class="container" th:fragment="content">
+    <div class="container" style="position: absolute;">
+        <h1 class="text-center mt-2 mb-2" style="position: absolute;">LISTADO DE ROLES</h1>
+        <br>
+        <h1 th:if="${items.size()==0}" style="margin-top: 35px; text-align: center;">No hay datos para mostrar</h1>
+        <div style="text-align: right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarRol"><i class="fas fa-plus"></i>Agregar
+                Nuevo</button>
+        </div> 
+        <hr> 
+        <div class="my-custom-scrollbar-bigTable table-wrapper-scroll-y">
+            <table class="table border border-dark" id="datos" th:if="${items.size()>0}"
+                style="color: white; text-align: center; width: 98%; margin-left: 1%;">
+                <thead class="bg-gradient-primary">
+                    <tr>
+                        <th>Rol</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody style="color: black;">
+                    <tr th:each="i:${items}">
+                        <td th:text="${i.nombreRol}"></td>
+                        <td>
+                            <a name="editar" id="editar" class="btn btn-primary"
+                                th:href="@{'/rol/modificar/' + ${i.idRol}}" role="button"><i class="fas fa-edit"></i> Editar</a>
+                        <td>
+                            <a name="eliminar" id="eliminar" class="btn btn-danger"
+                                th:href="@{'/rol/eliminar/' + ${i.idRol}}" role="button"> <i class="fas fa-trash-alt"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+        <!--MODAL AGREGAR ROL-->
+        <div class="modal fade" id="agregarRol">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!--MODAL HEADER-->
+                    <div class="modal-header p-3 mb-2 bg-gradient-primary text-white">
+                        <h6 class="modal-title">NUEVO ROL</h6>
+                        <button type="button" class="close text-white" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    </div>
+
+                    <!--MODAL BODY-->
+                    <div class="modal-body">
+                        <form th:action="@{/rol/agregar}" method="post" class="text-center">
+                            <div class="form-group text-left">
+                                <label class="">Rol:</label>
+                                <input type="text" class="form-control border border-dark" id="rol" name="nombreRol"
+                                    autocomplete="off" placeholder="Digite el rol" required autofocus onkeypress="return /[a-z]/i.test(event.key)">
+                            </div>
+
+                            <div class="text-center form-group mt-4">
+                                <hr class="border border-dark">
+                                 <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+                                <button class="btn btn-primary" type="reset"><i class="fas fa-broom"></i> Limpiar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--
+    <script>
+        /*//configuracion de data table
+        $(document).ready(function () {
+            $('#tablas').DataTable({
+                //agregando todo a idioma espaniol
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+
+            });
+        });
+
+        $(document).ready(function () {
+            $('#tablas').DataTable({
+                
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });*/
+
+    </script>-->
+
+
+</body>
+
+</html>

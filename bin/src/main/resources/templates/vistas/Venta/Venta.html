@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.css">
+
+</head>
+<body class="container"style="#">
+
+	<div class="text-center">
+		<h1>Venta</h1>
+	</div>
+
+	<div class="row>
+        <div class=">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<!-- <h3 class="panel-title">Cabecera</h3> -->
+				<hr>
+				<div class="row">
+
+					<div class="col-md-5" style="background-color: white;">
+						<div class="form-group">
+							<label for="cliente" class="col-sm-2 control-label">Nombre</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="cliente" placeholder="Venta"
+									type="text">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-5" style="background-color: white;">
+						<div class="form-group">
+							<label for="cliente" class="col-sm-2 control-label">Numero</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="cliente" placeholder="Venta"
+									type="text">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5" style="background-color: white;">
+						<div class="form-group">
+							<label for="cliente" class="col-sm-2 control-label">Total</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="cliente" placeholder="Venta"
+									type="text">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5" style="background-color: white;">
+						<div class="form-group">
+							<label for="cliente" class="col-sm-2 control-label">Tipo</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="cliente" placeholder="Venta"
+									type="text">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-5" style="background-color: white;">
+						<div class="form-group">
+							<label for="cliente" class="col-sm-2 control-label">Estado</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="cliente" placeholder="Venta"
+									type="text">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4" style="background-color: white;">
+						<div class="form-group">
+
+							<label for="fecha" class="col-sm-2 control-label">Fecha</label>
+							<div class="col-sm-10">
+								<input class="form-control" id="fecha" placeholder="Venta"
+									type="date">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- row -->
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<address>
+							<strong class="">IBS</strong><br class=""> Ahuachapán nº 26
+							A<br class=""> 07008 Palma<br class=""> Illes Balears<br
+								class="">
+						</address>
+					</div>
+				</div>
+				<!-- row -->
+			</div>
+			<!-- panel heading -->
+			<div class="panel-body">
+				<h3 class="panel-title">Detalle</h3>
+
+				<table class="table border border-dark" id="datos">
+					<thead>
+						<tr>
+							<th class="">Producto</th>
+							<th class="">Descripción</th>
+							<th class="">cantidad</th>
+							<th class="">precio</th>
+							<th class="">tipo impuesto</th>
+							<th class="">importe</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="">001</td>
+							<td class="">Carlos</td>
+							<td class="">12.00</td>
+							<td class="">100.00</td>
+							<td class="">Reducido 7%</td>
+							<td class="">1200.00</td>
+						</tr>
+						<tr>
+							<td class="">002</td>
+							<td class="">Rony</td>
+							<td class="">10.00</td>
+							<td class="">1000.00</td>
+							<td class="">Normal 18%</td>
+							<td class="">10000.00</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- panel body -->
+			<div class="panel-footer">Pie Venta</div>
+		</div>
+		<!-- panel -->
+	</div>
+	<!-- col -->
+
+	<!-- <script>
+        //configuracion de data table
+        $(document).ready(function () {
+            $('#datos').DataTable({
+                //agregando todo a idioma espaniol
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+                },
+
+            });
+        });
+    </script> -->
+</body>
+</html>

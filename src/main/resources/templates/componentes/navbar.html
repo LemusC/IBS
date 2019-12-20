@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<div th:fragment="navbar">
+		<!-- Page Wrapper -->
+		<div id="wrapper">
+
+			<!-- Sidebar -->
+			<ul
+				class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+				id="accordionSidebar">
+
+				<!-- Sidebar - Brand -->
+				<a
+					class="sidebar-brand d-flex align-items-center justify-content-center"
+					th:href="@{/index}">
+					<div class="sidebar-brand-icon rotate-n-15"></div>
+					<div class="sidebar-brand-text mx-3">
+						<h3>IBS</h3>
+					</div>
+				</a>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider my-0">
+
+				<!-- ITEM INICIO-->
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/index}"> <i class="fas fa-home"></i> <span>Inicio</span></a>
+				</li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider d-noned-md-block">
+
+				<!-- ITEM USUARIOS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/usuario/index}" aria-expanded="true"> <i
+						class="fas fa-user-tie"></i> <span>Usuarios</span>
+				</a></li>
+
+				<!-- ITEM ROLES-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/rol/index}" aria-expanded="true"> <i
+						class="fas fa-user-tag"></i> <span>Roles</span>
+				</a></li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider d-noned-md-block ">
+
+				<!-- ITEM CLIENTES-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/cliente/index}" aria-expanded="true"> <i
+						class="fas fa-users"></i> <span>Clientes</span>
+				</a></li>
+
+				<!-- ITEM VENTAS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/venta/index}" aria-expanded="true"> <i
+						class="fas fa-cart-arrow-down"></i> <span>Ventas</span>
+				</a></li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider d-noned-md-block ">
+
+				<!-- ITEM COMPRAS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/compra/index}" aria-expanded="true"> <i
+						class="fas fa-shopping-bag"></i> <span>Compras</span>
+				</a></li>
+
+				<!-- ITEM PROVEEDORES-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/proveedor/index}" aria-expanded="true"> <i
+						class="fas fa-user-plus"></i> <span>Proveedores</span>
+				</a></li>
+
+				<!-- Divider -->
+				<hr class="sidebar-divider d-noned-md-block ">
+
+				<!-- ITEM PRODUCTOS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/producto/index}" aria-expanded="true"> <i
+						class="fas fa-palette"></i> <span>Productos</span>
+				</a></li>
+
+				<!-- ITEM ENTRADAS Y SALIDAS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/EntradasSalidasProductos/index}" aria-expanded="true">
+						<i class="fas fa-exchange-alt"></i> <span>Inventario</span>
+				</a></li>
+
+				<!-- ITEM CATEGORIAS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/categoria/index}" aria-expanded="true"> <i
+						class="fas fa-check"></i> <span>Categorias</span>
+				</a></li>
+
+				<!-- ITEM MARCAS-->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/marca/index}" aria-expanded="true"> <i
+						class="fas fa-copyright"></i> <span>Marcas</span>
+				</a></li>
+
+
+				<!-- ITEM INVENTARIO
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/inventario/index}" aria-expanded="true"> <i
+						class="fas fa-clipboard-list"></i> <span>Inventario</span>
+				</a></li>-->
+
+				<!-- Divider -->
+				<hr class="sidebar-divider d-noned-md-block ">
+
+				<!-- Sidebar Toggler (Sidebar) 
+				<div class="text-center d-none d-md-inline">
+					<button class="rounded-circle border-0" id="sidebarToggle"></button>
+				</div>-->
+
+			</ul>
+			<!-- End of Sidebar -->
+
+			<!-- Content Wrapper -->
+			<div id="content-wrapper" class="d-flex flex-column">
+
+				<!-- Main Content -->
+				<div id="content">
+
+					<!-- Topbar -->
+					<nav
+						class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+						<!-- Sidebar Toggle (Topbar) -->
+						<button id="sidebarToggleTop"
+							class="btn btn-link d-md-none rounded-circle mr-3">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Topbar Navbar -->
+						<ul class="navbar-nav ml-auto">
+
+							<!-- Nav Item - User Information 
+				<li class="nav-item dropdown no-arrow">
+				  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario</span>
+				  </a>
+				   Dropdown - User Information 
+				  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+					  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+					  Logout
+					</a>
+				  </div>
+				</li>-->
+
+							<div class="btn-group">
+								<button type="button" class="btn btn-primary dropdown-toggle"
+									data-toggle="dropdown">
+									<i class="fas fa-user"></i> Usuarios
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="/logout">Cerrar Sesion</a>
+								</div>
+							</div>
+
+						</ul>
+
+					</nav>
+
+					<div th:include="this::content"></div>
+
+					<!-- <footer class="row" style="margin: 10px; text-align: left;">
+						<p class="col-md-10 col-sm-10 col-xs-12 copyright">
+							<font>CDS Ahuachapan 2019</font>
+						</p>
+
+						<p class="col-md-2 col-sm-2 col-xs-12 powered-by">
+							Proyecto <font>IBS</font>
+						</p>
+					</footer>
+
+					<!-- End of Topbar -->
+
+					<!-- End of Page Wrapper -->
+
+					<!-- Scroll to Top Button-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

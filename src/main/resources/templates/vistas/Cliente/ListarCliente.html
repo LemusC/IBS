@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layout::plantilla">
+
+<head>
+<title th:fragment="titulo">VISTA LISTAR CLIENTES</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container" style="position: absolute;">
+			<h1 class="text-center mt-2 mb-2" style="position: absolute;">LISTADO
+				DE CLIENTES</h1>
+			<br>
+			<h2 th:if="${items.size()==0}"
+				style="margin-top: 35px; text-align: center;">No hay datos para
+				mostrar</h2>
+
+			<div style="text-align: right">
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#agregarCliente">
+					<i class="fas fa-plus"></i>Agregar Nuevo
+				</button>
+			</div>
+			<hr>
+			<div class="my-custom-scrollbar-bigTable table-wrapper-scroll-y">
+				<table class="table border border-dark" id="datos"
+					th:if="${items.size()>0}"
+					style="color: white; text-align: center; width: 98%; margin-left: 1%">
+					<thead class="bg-gradient-primary">
+						<tr>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>Direccion</th>
+							<!-- <th>Departamento</th>-->
+							<th>DUI</th>
+							<th>NCR</th>
+							<th>NIT</th>
+							<th>Tipo</th>
+							<th>Giro</th>
+							<th>Telefono</th>
+							<th width="10%">Editar</th>
+							<th width="11%">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody style="color: black;">
+						<tr th:each="i:${items}">
+							<td th:text="${i.nombreCliente}"></td>
+							<td th:text="${i.apellidoCliente}"></td>
+							<td th:text="${i.direccionCliente}"></td>
+							<!-- <td th:text="${i.departamentoCliente}"></td>-->
+							<td th:text="${i.duiCliente}"></td>
+							<td th:text="${i.nrc}"></td>
+							<td th:text="${i.nit}"></td>
+							<td th:text="${i.tipoCliente}"></td>
+							<td th:text="${i.giro}"></td>
+							<td th:text="${i.telefonoCliente}"></td>
+							<td><a name="editar" id="editar" class="btn btn-primary"
+								th:href="@{'/cliente/modificar/' + ${i.idCliente}}"
+								role="button"><i class="fas fa-edit"></i> Editar</a></td>
+							<td><a name="eliminar" id="eliminar" class="btn btn-danger"
+								th:href="@{'/cliente/eliminar/' + ${i.idCliente}}" role="button"><i
+									class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!--MODAL AGREGAR CLIENTE-->
+		<div class="modal fade" id="agregarCliente">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					<!--MODAL HEADER-->
+					<div class="modal-header p-3 mb-2 bg-gradient-primary text-white">
+						<h6 class="modal-title">NUEVO CLIENTE</h6>
+						<button type="button" class="close text-white"
+							data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+
+					<!--MODAL BODY-->
+					<div
+						class="modal-body table-wrapper-scroll-y my-custom-scrollbar-modals">
+						<form th:action="@{/cliente/agregar}" method="post"
+							class="text-center">
+							<div class="form-group text-left">
+								<label>Nombre:</label> <input type="text"
+									class="form-control border border-dark" id="cliente"
+									name="nombreCliente" autocomplete="off"
+									placeholder="Digite el nombre" required autofocus
+									onkeypress="return /[a-z]/i.test(event.key)">
+							</div>
+							<div class="form-group text-left">
+								<label>Apellido:</label> <input type="text"
+									class="form-control border border-dark" id="cliente"
+									name="apellidoCliente" autocomplete="off"
+									placeholder="Digite el apellido" required
+									onkeypress="return /[a-z]/i.test(event.key)">
+							</div>
+							<div class="form-group text-left">
+								<label>Direccion:</label>
+								<textarea class="form-control border border-dark" rows="3"
+									cols="40" id="cliente" name="direccionCliente"
+									autocomplete="off" placeholder="Digite la direccion" required></textarea>
+							</div>
+							<!-- <div class="text-left">
+								<label>Departamento:</label> <select name="departamentoCliente"
+									id="cliente" class="border border-dark">
+									<option value="Ahuachapán">Ahuachapán</option>
+									<option value="Santa Ana">Santa Ana</option>
+									<option value="Sonsonate">Sonsonate</option>
+									<option value="Chalatenango">Chalatenango</option>
+									<option value="La Libertad">La Libertad</option>
+									<option value="San Salvador">San Salvador</option>
+									<option value="Cabañas">Cabañas</option>
+									<option value="Cuscatlán">Cuscatlán</option>
+									<option value="La Paz">La Paz</option>
+									<option value="San Miguel">San Miguel</option>
+									<option value="San Vicente">San Vicente</option>
+									<option value="Morazán">Morazán</option>
+									<option value="Usulután">Usulután</option>
+									<option value="La Unión">La Unión</option>
+								</select>
+							</div>-->
+							<div class="text-left">
+								<label>Departamento:</label> <select name="departamentoCliente"
+									id="cliente" class="form-control border border-dark col-sm-8">
+									<option value="Ahuachapan">Ahuachapan</option>
+									<option value="Santa Ana">Santa Ana</option>
+									<option value="Sonsonate">Sonsonate</option>
+									<option value="Chalatenango">Chalatenango</option>
+									<option value="La Libertad">La Libertad</option>
+									<option value="San Salvador">San Salvador</option>
+									<option value="Cabañas">Cabañas</option>
+									<option value="Cuscatlan">Cuscatlan</option>
+									<option value="La Paz">La Paz</option>
+									<option value="San Miguel">San Miguel</option>
+									<option value="San Vicente">San Vicente</option>
+									<option value="Morazan">Morazan</option>
+									<option value="Usulutan">Usulutan</option>
+									<option value="La Union">La Union</option>
+								</select>
+
+							</div>
+							<div class="form-group text-left">
+								<label>Dui:</label> <input type="text"
+									class="form-control border border-dark" id="cliente"
+									name="duiCliente" autocomplete="off"
+									placeholder="Digite el dui">
+							</div>
+							<div class="form-group text-left">
+								<label>Nrc:</label> <input type="text"
+									class="form-control border border-dark" id="cliente" name="nrc"
+									autocomplete="off"
+									placeholder="Digite el numero de registro contribuyente">
+							</div>
+							<div class="form-group text-left">
+								<label>Nit:</label> <input type="text"
+									class="form-control border border-dark" id="cliente" name="nit"
+									autocomplete="off" placeholder="Digite el nit">
+							</div>
+							<div class="text-left">
+								<label>Tipo cliente:</label> <select name="tipoCliente"
+									id="cliente" class="form-control border border-dark col-sm-8">
+									<option value="Consumidor Final">Consumidor Final</option>
+									<option value="Crédito Fiscal">Crédito Fiscal</option>
+								</select>
+							</div>
+							<div class="form-group text-left">
+								<label>Giro:</label> <input type="text"
+									class="form-control border border-dark" id="cliente"
+									name="giro" autocomplete="off" placeholder="Digite el giro">
+							</div>
+							<div class="form-group text-left">
+								<label>Telefono:</label> <input type="text"
+									class="form-control border border-dark" id="cliente"
+									name="telefonoCliente" autocomplete="off"
+									placeholder="Digite el telefono" required>
+							</div>
+							<hr class="border border-dark">
+							<div class="text-center form-group mt-4">
+								<button type="submit" class="btn btn-success">
+									<i class="fas fa-save"></i> Guardar
+								</button>
+								<button class="btn btn-primary" type="reset">
+									<i class="fas fa-broom"></i> Limpiar
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

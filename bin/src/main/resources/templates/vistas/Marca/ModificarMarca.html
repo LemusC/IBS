@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo">Vista Modificar Marca</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<h1 class="text-center mt-2 mb-2">Modificacion de Marca</h1>
+		<form th:action="@{/marca/modificar}" method="post">
+			<div class="form-group row border border-dark">
+				<input th:value="${item.idMarca}" type="hidden" class="form-control" name="idMarca"
+					id="idMarca">
+			</div>	
+			<div class="form-group row form-update">
+				<label for="nombreMarca" class="col-sm-12 col-form-label">Marca:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nombreMarca}" type="text" class="form-control border border-dark" name="nombreMarca"
+						id="nombreMarca" placeholder="Digite la marca" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a name="cancelar" id="cancelar" class="btn btn-danger" href="/marca/index"
+					role="button">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

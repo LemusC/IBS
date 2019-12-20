@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo">Vista Modificar Cliente</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<h1 class="text-center mt-2 mb-2">Modificacion de Cliente</h1>
+		<form th:action="@{/cliente/modificar}" method="post" class="table-wrapper-scroll-y my-custom-scrollbar">
+			<div class="form-group row border border-dark">
+				<input th:value="${item.idCliente}" type="hidden" class="form-control" name="idCliente"
+					id="idCliente">
+			</div>	
+			<div class="form-group row form-update">
+				<label for="nombreCliente" class="col-sm-12 col-form-label">Nombre:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nombreCliente}" type="text" class="form-control border border-dark" name="nombreCliente"
+						id="nombreCliente" placeholder="Digite el nombre" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="apellidoCliente" class="col-sm-12 col-form-label">Apellido:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.apellidoCliente}" type="text" class="form-control border border-dark" name="apellidoCliente"
+						id="apellidoCliente" placeholder="Digite el apellido" autocomplete="off">
+				</div>
+            </div>
+            <div class="form-group row form-update">
+				<label for="direccionCliente" class="col-sm-12 col-form-label">Direccion:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.direccionCliente}" type="text" class="form-control border border-dark" name="direccionCliente"
+						id="direccionCliente" placeholder="Digite la direccion" autocomplete="off">
+				</div>
+            </div>
+            <div class="form-group row form-update">
+                    <label for="departamentoCliente" class="col-sm-12  col-form-label">Departamento:</label>
+                    <div class="col-sm-12">
+                    <select name="departamentoCliente" id="cliente" class="border border-dark" th:value="${item.departamentoCliente}">
+                        <option value="Ahuachapán">Ahuachapán</option>
+                        <option value="Santa Ana">Santa Ana</option>
+                        <option value="Sonsonate">Sonsonate</option>
+                        <option value="Chalatenango">Chalatenango</option>
+                        <option value="La Libertad">La Libertad</option>
+                        <option value="San Salvador">San Salvador</option>
+                        <option value="Cabañas">Cabañas</option>
+                        <option value="Cuscatlán">Cuscatlán</option>
+                        <option value="La Paz">La Paz</option>
+                        <option value="San Miguel">San Miguel</option>
+                        <option value="San Vicente">San Vicente</option>
+                        <option value="Morazán">Morazán</option>
+                        <option value="Usulután">Usulután</option>
+                        <option value="La Unión">La Unión</option>
+                    </select>
+                </div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="duiCliente" class="col-sm-12 col-form-label">Dui:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.duiCliente}" type="text" class="form-control border border-dark" name="duiCliente"
+						id="duiCliente" placeholder="Digite el dui" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="nrc" class="col-sm-12 col-form-label">Numero de Registro Contribuyente:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nrc}" type="text" class="form-control border border-dark" name="nrc"
+						id="nrc" placeholder="Digite el numero de registro contribuyente" autocomplete="off">
+				</div>
+            </div>
+            <div class="form-group row form-update">
+				<label for="nit" class="col-sm-12 col-form-label">NIT:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.nit}" type="text" class="form-control border border-dark" name="nit"
+						id="nit" placeholder="Digite el nit" autocomplete="off">
+				</div>
+            </div>
+            
+            <div class="form-group row form-update">
+                <label for="tipoCliente" class="col-sm-12 col-form-label">Tipo:</label>
+                <div class="col-sm-12">
+                    <select name="tipoCliente" id="cliente" class="border border-dark" th:value="${item.departamentoCliente}">
+                        <option value="Consumidor Final">Consumidor Final</option>
+                        <option value="Crédito Fiscal">Crédito Fiscal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row form-update">
+				<label for="giro" class="col-sm-12 col-form-label">Giro:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.giro}" type="text" class="form-control border border-dark" name="giro"
+						id="giro" placeholder="Digite el giro" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group row form-update">
+				<label for="telefonoCliente" class="col-sm-12 col-form-label">Telefono:</label>
+				<div class="col-sm-12">
+					<input th:value="${item.telefonoCliente}" type="text" class="form-control border border-dark" name="telefonoCliente"
+						id="telefonoCliente" placeholder="Digite el telefono" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a name="cancelar" id="cancelar" class="btn btn-danger" href="/cliente/index"
+					role="button">Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

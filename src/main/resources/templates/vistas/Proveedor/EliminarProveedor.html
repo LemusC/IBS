@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">Vista Eliminar Proveedor</title>
+</head>
+
+<body>
+    <div class="container" th:fragment="content">
+    <div class="container my-custom-scrollbar-deletes">
+        <h1 class="text-center mt-2 mb-2">Eliminando Proveedor</h1>
+
+        <form th:action="@{/proveedor/eliminar}" method="post" class="text-center">
+
+            <input type="hidden" name="idProveedor" th:value="${item.idProveedor}">
+            <div class='p-3 mb-2 bg-danger text-white col-8 offset-2 text-center' role='alert' id='alerta'>
+                <h3 th:text="|Desea eliminar el Proveedor:  ${item.nombreProveedor} ${item.apellidoProveedor}?|"></h3>
+            </div>
+
+           <div class="form-group ">
+                <button type="submit" class="btn btn-danger">
+						<i class="fas fa-trash-alt"></i> Eliminar
+					</button>
+                <a class="btn btn-primary" href="/proveedor/index" role="button"><i class="fas fa-window-close"></i> Cancelar</a>
+           </div>
+
+        </form>
+        </div>
+    </div>
+</body>
+
+</html>

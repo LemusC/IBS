@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layouts/layoutLogin::plantilla2">
+
+<head>
+
+<title th:fragment="titulo">LOGIN</title>
+</head>
+
+<body class="bg-gradient-primary">
+
+	<div class="container" th:fragment="content">
+
+			<img src="/static/img/logo.png" align="left"
+				style="margin-top: 250px; width: 30%; margin-left:110px; ">
+		
+		<div class="main">
+
+			<div class="container-login">
+
+				<div class="middle">
+
+					<div id="login" style="margin-left: 350px;">
+						<h1 class="" style="margin-left: 35px; color: white;">Bienvenido</h1>
+						<img src="/static/img/usuario.png" width="100"
+							style="margin-left: 90px;">
+						<hr>
+						<form class="user" method="post" th:action="@{/login}">
+							<div class="form-group">
+								<input type="textarea" class="form-control form-control-user"
+									id="username" placeholder="Usuario" autocomplete="off"
+									name="username">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control form-control-user"
+									id="password" placeholder="Contrase&ntilde;a" name="password">
+							</div>
+						
+							<button  class="btn-success btn-user btn-block">Ingresar
+							</button>
+							<!-- <input type="submit" class="btn btn-primary btn-user btn-block" value="Ingresar"/> -->
+						<hr>
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

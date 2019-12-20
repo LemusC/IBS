@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo"></title>
+</head>  
+
+<body>
+	<div class="container" th:fragment="content">
+		<div class="container">
+			<h1 class="text-center mt-2">Nueva Compra</h1>
+			<form>
+				<div class="form-group row" style="margin-left: 20%;">
+					<label for="inputName" class="col-sm-1 col-form-label">
+						Fecha:</label>
+					<div class="col-sm-3">
+						<input type="date" class="form-control" name="fecha" id="fecha">
+					</div>
+
+					<div class="form-group row">
+						<label for="inputName" class="col-sm-3 col-form-label">
+							Numero:</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" name="fecha" id="text" placeholder="Factura">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group row" style="margin-left: 20%;">
+					<label for="inputName" class="col-sm-1 col-form-label">
+						Tipo:</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="fecha" id="#" placeholder="Tipo de compra">
+					</div>
+					<div class="form-group row">
+						<label for="inputName" class="col-sm-3 col-form-label">
+							Proveedores:</label>
+						<div class="col-sm-6">
+
+							<input type="text" class="form-control" name="producto" id="producto" readonly="readonly"
+								placeholder="Proveedor">
+
+
+						</div>
+						<button type="button" class="btn btn-primary" data-toggle="modal"
+							data-target="#ModalProveedores"><i class="fas fa-search-plus"></i> Buscar</button>
+
+					</div>
+				</div>
+				<hr>
+				<h3 class="text-center">Detalles de la compra</h3>
+				<div class="form-group row">
+					<div class="col-sm-2">
+						<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad">
+					</div>
+					<div class="col-sm-2">
+						<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Precio">
+					</div>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" name="producto" id="producto" readonly="readonly" placeholder="Producto">
+					</div>
+					<button type="button" class="btn btn-primary" data-toggle="modal" 
+						data-target="#ModalProducto"><i class="fas fa-search-plus"></i> Buscar</button>
+					<button name="agregarProducto" id="agregar" class="btn btn-success ml-1 " type="button"><i
+					class="fas fa-plus"></i> Agregar</button>
+				</div>
+				<div class="">
+				<table class="table border border-dark" style="color: white; text-align: center;">
+									<thead class="bg-gradient-primary" style="color: white;">
+						<tr>
+							<th>Cant.</th>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Total</th>
+							<th>Operaciones</th>
+						</tr>
+					</thead>
+					<tbody style="color: black;">
+						<tr>
+							<td>10</td>
+							<td>Temperas</td>
+							<td>2.50</td>
+							<td>25.00</td>
+							<td><a name="eliminarDetalle" id="eliminarDetalle" class="btn btn-danger" href="#"
+									role="button"><i class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+						<tr>
+							<td>250</td>
+							<td>Papel estaño</td>
+							<td>0.35</td>
+							<td>87.5</td>
+							<td><a name="eliminarDetalle" id="eliminarDetalle" class="btn btn-danger" href="#"
+									role="button"><i class="fas fa-trash-alt"></i> Eliminar</a></td>
+						</tr>
+					</tbody>
+
+				</table>
+				</div>
+				<div>
+					<label for="totalCompra" class="col-sm-2 col-form-label">
+						<h5>Total Compra:</h5>
+					</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="totalVenta"
+							id="totalVenta" readonly="readonly">
+					</div>
+				</div>
+				<div class="text-center form-group mt-4">
+					<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+					<a name="cancelar" id="cancelar" class="btn btn-danger" th:href="@{/compra/index}" role="button"><i
+							class="fas fa-window-close"></i> Cancelar</a>
+				</div>
+			</form>
+			</div>
+			
+
+			<!--  Modal Para seleccionar producto-->
+			<!-- The Modal -->
+			<div class="modal fade" id="ModalProveedores">
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content" style="margin-left: 150px;">
+
+						<!-- Modal Header -->
+						<div class="container">
+							<div class="modal-header">
+								<h4 class="modal-title">Listado de proveedores</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<!-- Modal body -->
+							<div class="modal-body">
+								<table class="table border border-dark" id="datosProveedor" style="color: white; text-align: center;">
+									<thead class="bg-gradient-primary" style="color: white;">
+										<tr>
+											<th>Nombre</th>
+											<th>Apellido</th>
+											<th>DUI</th>
+											<th>Direccion</th>
+											<th>Telefono</th>
+											<th>Correo</th>
+											<th>Agregar</th>
+										</tr>  
+									</thead>
+									<tbody style="color: black;">
+										<tr th:each="i:${Proveedores}">
+											<td th:text="${i.nombreProveedor}"></td>
+											<td th:text="${i.apellidoProveedor}"></td>
+											<td th:text="${i.duiProveedor}"></td>
+											<td th:text="${i.direccionProveedor}"></td>
+											<td th:text="${i.telefonoProveedor}"></td>
+											<td th:text="${i.correoProveedor}"></td>
+											<td>
+												<button id="agregarProveedor" class="btn btn-primary">
+													<i class="fas fa-plus"></i> Agregar
+												</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!--  Modal Para seleccionar producto-->  
+		<!-- The Modal -->
+		<div class="modal fade" id="ModalProducto">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content" style="margin-left: 150px;">
+
+					<!-- Modal Header -->
+					<div class="container">
+						<div class="modal-header">
+							<h4 class="modal-title">Listado de productos</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<table class="table border border-dark" id="datos" style="color: white; text-align: center;">
+								<thead class="bg-gradient-primary" style="color: white;">
+									<tr>
+										<th>Codigo</th>
+										<th>Producto</th>
+										<th>Presentacion</th>
+										<th>Existencias</th>
+										<th>Categoria</th>
+										<th>Marca</th>
+										<th>Agregar</th>
+									</tr>
+								</thead>
+								<tbody style="color: black;">
+									<tr th:each="i:${nombreProductos}">
+										<td th:text="${i.codigoProducto}"></td>
+										<td th:text="${i.nombreProducto}"></td>
+										<td th:text="${i.presentacion}"></td>
+										<td th:text="${i.existencia}"></td>
+										<td th:text="${i.Categorias.nombreCategoria}"></td>
+										<td th:text="${i.Marcas.nombreMarca}"></td>
+										<td>
+											<button id="agregarProducto" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+
+	<script>
+		$(document).ready(inicio);
+		
+		function inicio(){
+			$('#agregar').click(function(){
+				alert('hola');
+			});
+		};
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="layouts/layout::plantilla">
+
+<head>
+	<title th:fragment="titulo">Vista Modificar Proveedor</title>
+</head>
+
+<body>
+	<div class="container" th:fragment="content">
+		<h1 class="text-center mt-2 mb-2">Modificacion de Proveedor</h1>
+		<form th:action="@{/proveedor/modificar}" method="post" class="col-sm-10 offset-1">
+			<div class="form-group row border border-dark" style="text-align: center;">
+				<input th:value="${item.idProveedor}" type="hidden" class="form-control" name="idProveedor"
+					id="idProveedor">
+			</div>	
+			<div class="form-group row" style="text-align: center;">
+				<label for="nombreProveedor" class="col-sm-2" style="text-align: right;">Nombre:</label>
+				<div class="col-sm-8">
+					<input th:value="${item.nombreProveedor}" type="text" class="form-control border border-dark" name="nombreProveedor"
+						id="nombreProveedor" placeholder="Digite el nombre" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row" style="text-align: center;">
+				<label for="apellidoProveedor" class="col-sm-2" style="text-align: right;">Apellido:</label>
+				<div class="col-sm-8">
+					<input th:value="${item.apellidoProveedor}" type="text" class="form-control border border-dark" name="apellidoProveedor"
+						id="apellidoProveedor" placeholder="Digite el apellido" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row" style="text-align: center;">
+				<label for="duiProveedor" class="col-sm-2" style="text-align: right;">Dui:</label>
+				<div class="col-sm-8">
+					<input th:value="${item.duiProveedor}" type="text" class="form-control border border-dark" name="duiProveedor"
+						id="duiProveedor" placeholder="Digite el dui" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row" style="text-align: center;">
+				<label for="direccionProveedor" class="col-sm-2" style="text-align: right;">Direccion:</label>
+				<div class="col-sm-8">
+					<textarea th:value="${item.direccionProveedor}"
+						class="form-control border border-dark" rows="3" cols="40"
+						id="proveedor" name="direccionProveedor" autocomplete="off"
+						placeholder="Digite la direccion" required></textarea>
+				</div>
+			</div>
+			<div class="form-group row" style="text-align: center;">
+				<label for="telefonoProveedor" class="col-sm-2" style="text-align: right;">Telefono:</label>
+				<div class="col-sm-8">
+					<input th:value="${item.telefonoProveedor}" type="text" class="form-control border border-dark" name="telefonoProveedor"
+						id="telefonoProveedor" placeholder="Digite el telefono" autocomplete="off" required>
+				</div>
+			</div>
+			<div class="form-group row" style="text-align: center;">
+				<label for="correoProveedor" class="col-sm-2" style="text-align: right;">Correo:</label>
+				<div class="col-sm-8">
+					<input th:value="${item.correoProveedor}" type="text" class="form-control border border-dark" name="correoProveedor"
+						id="correoProveedor" placeholder="Digite el correo" autocomplete="off">
+				</div>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
+				<a name="cancelar" id="cancelar" class="btn btn-danger" href="/proveedor/index"
+					role="button"><i class="fas fa-window-close"></i> Cancelar</a>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

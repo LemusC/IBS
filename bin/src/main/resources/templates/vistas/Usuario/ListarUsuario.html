@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="/layouts/layout::plantilla">
+
+<head>
+    <title th:fragment="titulo">VISTA LISTAR USUARIOS</title>
+</head>
+
+<body>
+    <div class="container" th:fragment="content">
+        <h1 class="text-center mt-2 mb-2">LISTADO DE USUARIOS</h1>
+        <h2 th:if="${items.size()==0}" style="margin-top: 35px; text-align: center;">No hay datos para mostrar</h2>
+
+        <div style="text-align: right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarUsuario"><i
+                    class="fas fa-plus"></i>Agregar
+                Nuevo</button>
+        </div>
+        <hr>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table border border-dark" id="datos" th:if="${items.size()>0}"
+                style="color: black; text-align: center; width: 99%; margin-left: 1%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DUI</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Correo</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="i:${items}">
+                        <td th:text="${i.nombreUsuario}"></td>
+                        <td th:text="${i.apellidoUsuario}"></td>
+                        <td th:text="${i.duiUsuario}"></td>
+                        <td th:text="${i.telefonoUsuario}"></td>
+                        <td th:text="${i.direccionUsuario}"></td>
+                        <td th:text="${i.correoUsuario}"></td>
+                        <td th:text="${i.user}"></td>
+                        <td th:text="${i.password}"></td>
+                        <td th:text="${i.Roles.nombreRol}"></td>
+                        <td>
+                            <a name="editar" id="editar" class="btn btn-primary"
+                                th:href="@{'/usuario/modificar/' + ${i.idUsuario}}" role="button">Editar</a>
+                        </td>
+                        <td>
+                            <a name="eliminar" id="eliminar" class="btn btn-danger"
+                                th:href="@{'/usuario/eliminar/' + ${i.idUsuario}}" role="button">Eliminar</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--MODAL AGREGAR USUARIO-->
+        <div class="modal fade" id="agregarUsuario">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <!--MODAL HEADER-->
+                    <div class="modal-header p-3 mb-2 bg-dark text-white">
+                        <h6 class="modal-title">NUEVO USUARIO</h6>
+                        <button type="button" class="close text-white" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
+                    </div>
+
+                    <!--MODAL BODY-->
+                    <div class="modal-body table-wrapper-scroll-y my-custom-scrollbar">
+                        <form th:action="@{/usuario/agregar}" method="post" class="text-center">
+                            <div class="form-group text-left col-sm-12">
+                                <label>Nombre:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="nombreUsuario" autocomplete="off" placeholder="Digite el nombre" required
+                                    autofocus>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Apellido:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="apellidoUsuario" autocomplete="off" placeholder="Digite el apellido" required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Dui:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="duiUsuario" autocomplete="off" placeholder="Digite el dui" required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Telefono:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="telefonoUsuario" autocomplete="off" placeholder="Digite el telefono" required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Direccion:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="direccionUsuario" autocomplete="off" placeholder="Digite la direccion"
+                                    required>
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Correo:</label>
+                                <input type="text" class="form-control border border-dark" id="usuario"
+                                    name="correoUsuario" autocomplete="off" placeholder="Digite el correo">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Usuario:</label>
+                                <input type="text" class="form-control border border-dark" id="user" name="user"
+                                    autocomplete="off" placeholder="Digite el usuario">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Contraseña:</label>
+                                <input type="text" class="form-control border border-dark" id="password" name="password"
+                                    autocomplete="off" placeholder="Digite la contraseña">
+                            </div>
+                            <div class="form-group text-left col-sm-12">
+                                <label>Rol:</label>
+                                <div>
+                                    <select name="idRol" id="idRol" class="form-control border border-dark">
+                                        <option th:each="i:${nombreRoles}" th:value="${i.idRol}"
+                                            th:text="${i.nombreRol}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr class="border border-dark">
+                            <div class="text-center form-group mt-4">
+                                <input type="submit" class="btn btn-success" value="Guardar">
+                                <input class="btn btn-primary" type="reset" value="Limpiar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
